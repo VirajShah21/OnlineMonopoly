@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Monopoly | Startpage</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="bg-dark">
+
+<div class="container bg-light">
+    <div class="row">
+        <div class="col-12 col-md-6 text-center text-md-left display-4">
+            <span class="player-name"></span>
+        </div>
+
+        <div class="col-12 col-md-6 text-center text-md-right display-4">
+            $<span class="player-balance"></span>
+        </div>
+    </div>
+
+    <div class="row" id="turn-options" hidden> <!-- Turn options -->
+        <div class="col-12 col-md-6"> <!-- Property Management -->
+            <div class="font-weight-bold">Property Management</div>
+            <button class="btn btn-secondary">Build</button>
+            <button class="btn btn-secondary">Mortgage</button>
+            <button class="btn btn-secondary">Unmortgage</button>
+            <button class="btn btn-secondary">Trade</button>
+        </div>
+
+        <div class="col-12 col-md-6"> <!-- Turn Option -->
+            <div class="font-weight-bold">Your Turn</div>
+            <button class="btn btn-primary" id="turn-options_roll-dice">Roll Dice</button>
+        </div>
+    </div>
+
+    <div class="row" id="property-navigator" hidden> <!-- Property Navigator -->
+        <div class="col-12">
+            <div class="font-weight-bold">Property Navigator</div>
+        </div>
+        
+        <div class="col-12">
+            <div id="properties-wrapper"></div>
+        </div>
+    </div>
+
+    <!-- add experimental INSIGHT feature which provides insight into the game -->
+
+    <div class="row" id="game-lobby" hidden> <!-- Game lobby -->
+        <div class="col-12">
+            <h2>Game Lobby</h2>
+            Game ID: <span class="game-id"></span>
+            <br/>
+            Players:
+            <ul class="players-list"></ul>
+
+            <button class="btn btn-primary" id="game-lobby_start-game">Start Game</button>
+        </div>
+    </div>
+</div>
+
+<div class="container bg-light" id="monopoly-board-container" hidden>
+    <div class="row">
+        <div class="col-12 text-center">
+            <table border="1"
+                   style="border:3px solid black;text-align:center;font:normal 8pt/9pt arial;width:400px;border-collapse:separate; background-color:#F0FFF0;"
+                   aria-hidden="true">
+                <caption>Official U.S. Monopoly Game Board</caption>
+                <tbody>
+                <tr>
+                    <td id="board-position-20" style="height:60px;">Free Parking
+                        <div style="width:60px;height:0;"></div>
+                    </td>
+                    <td id="board-position-21" style="border-bottom:solid 12px Red">Kentucky Avenue<br>$220</td>
+                    <td id="board-position-22" style=""><a class="mw-redirect" title="Chance cards">Chance</a>
+                        <div style="font:bold 16pt times new roman,serif;color:#1e55d5;">?</div>
+                    </td>
+                    <td id="board-position-23" style="border-bottom:solid 12px Red">Indiana Avenue<br>$220</td>
+                    <td id="board-position-24" style="border-bottom:solid 12px Red">Illinois Avenue<br>$240</td>
+                    <td id="board-position-25" style=""><a title="Baltimore and Ohio Railroad">B&amp;O
+                        Railroad</a><br>$200
+                    </td>
+                    <td id="board-position-26" style="border-bottom:solid 12px Yellow">Atlantic Avenue<br>$260</td>
+                    <td id="board-position-27" style="border-bottom:solid 12px Yellow">Ventnor Avenue<br>$260</td>
+                    <td id="board-position-28" style=""><a title="Water supply">Water Works</a><br>$150</td>
+                    <td id="board-position-29" style="border-bottom:solid 12px Yellow"><a title="Marven Gardens">Marvin
+                        Gardens</a><br>$280
+                    </td>
+                    <td id="board-position-30">Go To Jail
+                        <div style="width:60px;height:0;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="board-position-19" style="height:34px;border-right:solid 12px Orange">New York Avenue<br>$200
+                    </td>
+                    <td rowspan="9" colspan="9" style="text-align:center">
+                        <span style="font:bold 10pt/12pt arial;">
+                            <span style="display:inline-block;outline:solid 2px #ff0000;border:solid 2px #F0FFF0;background-color:#ff0000;color:#ffffff;font:normal 22px verdana,arial;letter-spacing:+5px;padding:1px 12px 1px 12px;">
+                                <em>MONOPOLY</em>
+                             </span>
+                        </span>
+                    </td>
+                    <td id="board-position-31" style="border-left:solid 12px Green">Pacific Avenue<br>$300</td>
+                </tr>
+                <tr>
+                    <td id="board-position-18" style="height:34px;border-right:solid 12px Orange">Tennessee Avenue<br>$180
+                    </td>
+                    <td id="board-position-32" style="border-left:solid 12px Green">North Carolina Avenue<br>$300</td>
+                </tr>
+                <tr>
+                    <td id="board-position-17" style="height:34px;">
+                        <a class="mw-redirect" title="Community Chest cards">Community Chest</a>
+                    </td>
+                    <td id="board-position-33"><a class="mw-redirect" title="Community Chest cards">Community
+                        Chest</a></td>
+                </tr>
+                <tr>
+                    <td id="board-position-16" style="height:34px;border-right:solid 12px Orange">St. James Place<br>$180
+                    </td>
+                    <td id="board-position-34" style="border-left:solid 12px Green">Pennsylvania Avenue<br>$320</td>
+                </tr>
+                <tr>
+                    <td id="board-position-15" style="height:34px;"><a title="Pennsylvania Railroad">Pennsylvania
+                        Railroad</a><br>$200
+                    </td>
+                    <td id="board-position-35" style=""><a class="mw-redirect" title="Shore Fast Line">Short
+                        Line</a><br>$200
+                    </td>
+                </tr>
+                <tr>
+                    <td id="board-position-14" style="height:34px;border-right:solid 12px #ff0080">Virginia Avenue<br>$160
+                    </td>
+                    <td id="board-position-36" style=""><a class="mw-redirect" title="Chance cards">Chance</a>
+                        <div style="font:bold 16pt times new roman,serif;color:#c00;">?</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="board-position-13" style="height:34px;border-right:solid 12px #ff0080">States Avenue<br>$140
+                    </td>
+                    <td id="board-position-37" style="border-left:solid 12px Blue">Park Place<br>$350</td>
+                </tr>
+                <tr>
+                    <td id="board-position-12" id="board-position-12" style="height:34px;">
+                        <a class="mw-redirect" title="Electrical power industry">
+                            Electric Company
+                        </a>
+                        <br>
+                        $150
+                    </td>
+                    <td id="board-position-38" style=""><a title="Luxury tax">Luxury Tax</a><br>(pay $100)</td>
+                </tr>
+                <tr>
+                    <td id="board-position-11" style="height:34px;border-right:solid 12px #ff0080">St. Charles Place<br>$140
+                    </td>
+                    <td id="board-position-39" style="border-left:solid 12px Blue"><a
+                            title="List of boardwalks in the United States">Boardwalk</a><br>$400
+                    </td>
+                </tr>
+                <tr>
+                    <td id="board-position-10" style="height:60px;">In Jail/Just Visiting</td>
+                    <td id="board-position-9" style="border-top:solid 12px SkyBlue">Connecticut Avenue<br>$120</td>
+                    <td id="board-position-8" style="border-top:solid 12px SkyBlue">Vermont Avenue<br>$100</td>
+                    <td id="board-position-7" style=""><a class="mw-redirect" title="Chance cards">Chance</a>
+                        <div style="font:bold 16pt times new roman,serif;color:#c00;">?</div>
+                    </td>
+                    <td id="board-position-6" style="border-top:solid 12px SkyBlue">Oriental Avenue<br>$100</td>
+                    <td id="board-position-5" style=""><a title="Reading Company">Reading Railroad</a><br>$200</td>
+                    <td id="board-position-4" style=""><a title="Income tax">Income Tax</a><br>(pay $200)</td>
+                    <td id="board-position-3" style="border-top:solid 12px SaddleBrown">Baltic Avenue<br>$60</td>
+                    <td id="board-position-2" style=""><a class="mw-redirect" title="Community Chest cards">Community
+                        Chest</a></td>
+                    <td id="board-position-1" style="border-top:solid 12px SaddleBrown">Mediter-<br>ranean Avenue<br>$60
+                    </td>
+                    <td id="board-position-0">
+                        Collect $200 salary as you pass
+                        <br>
+                        <strong>GO</strong>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="/js/game.js" type="text/javascript"></script>
+</body>
+</html>

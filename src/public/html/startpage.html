@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Monopoly | Startpage</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="bg-dark">
+<div class="container bg-light">
+    <div class="row">
+        <div class="col-12 col-md-5">
+            <div class="row">
+                <h2>Join Game</h2>
+            </div>
+
+            <table>
+                <thead>
+                <th id="monopoly-board-head" colspan="9" class="text-center">Your Monopoly Game</th>
+                </thead>
+                <tr>
+                    <td class="font-weight-bold"><label for="join-game_name">Name</label></td>
+                    <td><input id="join-game_name"/></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold"><label for="join-game_id">Game ID</label></td>
+                    <td><input id="join-game_id"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="join-game_submit">Join</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-12 col-md-2">
+            - &nbsp; Or &nbsp; -
+        </div>
+
+        <div class="col-12 col-md-5">
+            <h2>Create New Game</h2>
+
+            <table>
+                <tr>
+                    <td class="font-weight-bold"><label for="new-game_name">Name</label></td>
+                    <td><input id="new-game_name"/></td>
+                </tr>
+
+                <tr>
+                    <td class="font-weight-bold" colspan="2">Rules</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" disabled/></td>
+                    <td>Landing on GO = $400</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" disabled/></td>
+                    <td>Tax dollars fund Free Parking Jackpot</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" disabled/></td>
+                    <td>Make player balance public</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="new-game_create">Create</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="/js/startpage.js" type="text/javascript"></script>
+</body>
+</html>

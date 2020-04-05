@@ -1,0 +1,32 @@
+{
+  "name": "onlinemonopoly",
+  "version": "1.0.0",
+  "description": "An online monopoly game",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -r build/*",
+    "build": "tsc -sourcemap",
+    "deploy": "npm run-script build && cp -r src/* build/ && node --enable-source-maps build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virajshah21/onlinemonopoly.git"
+  },
+  "author": "Viraj Shah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/virajshah21/onlinemonopoly/issues"
+  },
+  "homepage": "https://github.com/virajshah21/onlinemonopoly#readme",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.4",
+    "@types/node": "^13.9.8",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "tslint": "^6.1.1"
+  },
+  "dependencies": {}
+}
